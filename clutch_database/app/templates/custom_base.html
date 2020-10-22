@@ -1,0 +1,66 @@
+{% extends 'appbuilder/init.html' %}
+{% import 'appbuilder/baselib.html' as baselib %}
+{% set menu = appbuilder.menu %}
+{% set languages = appbuilder.languages %}
+
+
+{% block body %}
+        {% include 'appbuilder/general/confirm.html' %}
+        {% include 'appbuilder/general/alert.html' %}
+
+    {% block navbar %}
+        
+			<div class="navbar-dark bg-dark {{menu.extra_classes}}" role="navigation">
+			   <div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						{% if appbuilder.app_icon %}
+							<a class="navbar-brand" href="{{appbuilder.get_url_for_index}}">
+							<img src="{{appbuilder.app_icon}}" height="100%" width="auto">
+							</a>
+						{% else %}
+							<span class="navbar-brand">
+							<a href="{{appbuilder.get_url_for_index}}">
+							{{ appbuilder.app_name }}
+							</a>
+							</span>
+						{% endif %}                
+					</div>
+					<div class="navbar-collapse collapse">
+						<ul class="nav navbar-nav navbar-left">
+							{% include 'appbuilder/navbar_menu.html' %}
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							{% include 'appbuilder/navbar_right.html' %}
+						</ul>
+					</div>
+			   </div>
+			</div>
+		<header class="top" role="header">
+        </header>
+    {% endblock %}
+
+    <div class="container-fluid" style="padding-right: 40px;padding-left: 40px">
+      <div class="row ">
+          {% block messages %}
+            {% include 'appbuilder/flash.html' %}
+          {% endblock %}
+          {% block content %}
+          {% endblock %}
+      </div>
+    </div>
+
+    {% block footer %}
+        <footer>
+        <div class="img-rounded nav-fixed-bottom">
+            <div class="container">
+                {% include 'appbuilder/footer.html' %}
+            </div>
+        </div>
+        </footer>
+    {% endblock %}
+{% endblock %}
